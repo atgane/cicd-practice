@@ -22,7 +22,7 @@ jobs:
       run: go build ./main.go
 
     - name: checkout release
-      run: git checkout release
+      run: git checkout -t remotes/origin/release
 
     - name: auto merge release
       run: git merge dev
