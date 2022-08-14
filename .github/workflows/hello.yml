@@ -18,5 +18,10 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Test
-      run: go test -v ./...
+    - name: merge
+      uses: mtanzi/action-automerge@v1
+      id: merge
+      with:
+        github_token: ${{ github.token }}
+        source: 'dev'
+        target: 'release'
