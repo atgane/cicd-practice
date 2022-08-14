@@ -20,7 +20,7 @@ jobs:
       run: ls -a 
     
     - name: folder
-      run: cd /cicd-practice
+      run: cd cicd-practice
     
     - name: checkout release
       run: git checkout -t remotes/origin/release
