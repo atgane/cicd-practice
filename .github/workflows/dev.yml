@@ -17,15 +17,27 @@ jobs:
 
     - name: checkout dev
       run: git checkout dev
-    
+
+    - name: config
+      run: git config --global user.name "atgane"
+
+    - name: config
+      run: git config --global user.email "hyper2012@naver.com"
+
     - name: build
       run: go build ./main.go
 
     - name: checkout release
-      run: 
-        git remote set-branches --add origin release
-        git fetch
-        git checkout -t remotes/origin/release
+      run: git remote set-branches --add origin release 
+      
+    - name: fetch
+      run: git fetch
+      
+    - name: checkout
+      run: git checkout --track remotes/origin/release 
 
     - name: auto merge release
-      run: git merge dev
+      run: git merge -X theirs dev --allow-unrelated-histories
+
+    - name: push
+      run: git push origin release
