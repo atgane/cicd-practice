@@ -5,6 +5,7 @@ on:
     branches: ["dev"]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -15,29 +16,10 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: checkout dev
-      run: git checkout dev
-
-    - name: config
-      run: git config --global user.name "atgane"
-
-    - name: config
-      run: git config --global user.email "hyper2012@naver.com"
-
-    - name: build
-      run: go build ./main.go
-
-    - name: checkout release
-      run: git remote set-branches --add origin release 
-      
-    - name: fetch
-      run: git fetch
-      
-    - name: checkout
-      run: git checkout --track remotes/origin/release 
-
-    - name: auto merge release
-      run: git merge -X theirs dev --allow-unrelated-histories
-
-    - name: push
-      run: git push origin release
+    - name: merge
+      uses: mtanzi/action-automerge@v1
+      id: merge
+      with:
+        github_token: ${{ github.token }}
+        source: 'dev'
+        target: 'release'
