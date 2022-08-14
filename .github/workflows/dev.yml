@@ -22,7 +22,7 @@ jobs:
       run: go build ./main.go
 
     - name: checkout release
-      run: 
+      run: >
         git remote set-branches --add origin release
         git fetch
         git checkout -t remotes/origin/release
