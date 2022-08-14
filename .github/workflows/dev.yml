@@ -16,6 +16,9 @@ jobs:
     - name: clone
       run: git clone https://github.com/atgane/cicd-practice.git
     
+    - name: folder
+      run: cd /cicd-practice
+    
     - name: checkout release
       run: git checkout -t remotes/origin/release
     
