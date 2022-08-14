@@ -37,4 +37,4 @@ jobs:
       run: git checkout --track remotes/origin/release 
 
     - name: auto merge release
-      run: git merge dev --allow-unrelated-histories
+      run: git merge -X theirs dev --allow-unrelated-histories
