@@ -28,10 +28,7 @@ jobs:
       run: git fetch
       
     - name: checkout
-      run: git checkout --track remotes/origin/release  
-
-    - name: allow histories
-      run: git pull origin release --allow-unrelated-histories
+      run: git checkout --track remotes/origin/release --allow-unrelated-histories
 
     - name: auto merge release
       run: git merge dev
