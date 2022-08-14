@@ -8,27 +8,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
 
-    - name: checkout dev
-      run: git checkout dev
+    - name: clone
+      run: git clone https://github.com/atgane/cicd-practice.git
     
-    - name: build
-      run: go build ./main.go
-
     - name: checkout release
-      run: git remote set-branches --add origin release 
-      
-    - name: fetch
-      run: git fetch
-        
-    - name: checkout
-      run: git checkout --track remotes/origin/release  
+      run: git checkout -t remotes/origin/release
+    
+    - name: auto merge
+      run: git merge remotes/origin/dev
 
-    - name: auto merge release
-      run: git merge dev
+    - name: auto push
+      run: git push
