@@ -22,10 +22,13 @@ jobs:
       run: go build ./main.go
 
     - name: checkout release
-      run: |
-        git remote set-branches --add origin release \
-        git fetch \
-        git checkout --track remotes/origin/release \ 
+      run: git remote set-branches --add origin release 
+      
+    - name: fetch
+      run: git fetch
+        
+    - name: checkout
+      run: git checkout --track remotes/origin/release  
 
     - name: auto merge release
       run: git merge dev
