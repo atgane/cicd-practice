@@ -16,7 +16,7 @@ jobs:
         go-version: 1.18
 
     - name: checkout dev
-      run: git checkout -t remotes/origin/dev
+      run: git checkout dev
     
     - name: build
       run: go build ./main.go
