@@ -21,6 +21,9 @@ jobs:
     
     - name: folder
       run: cd cicd-practice
+
+    - name: pwd
+      run: pwd
     
     - name: checkout release
       run: git checkout -t remotes/origin/release
