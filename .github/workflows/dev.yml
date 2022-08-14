@@ -20,3 +20,9 @@ jobs:
     
     - name: build
       run: go build ./main.go
+
+    - name: checkout release
+      run: git checkout release
+
+    - name: auto merge release
+      run: git merge dev
