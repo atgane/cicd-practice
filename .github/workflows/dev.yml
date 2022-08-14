@@ -25,7 +25,7 @@ jobs:
       run: |
         git remote set-branches --add origin release \
         git fetch \
-        git checkout -t remotes/origin/release \ 
+        git checkout --track remotes/origin/release \ 
 
     - name: auto merge release
       run: git merge dev
