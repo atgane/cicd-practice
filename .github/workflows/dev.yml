@@ -47,6 +47,7 @@ jobs:
         push: true
         tags: hyper2012/app:latest
 
+
   deploy:
     needs: build
     runs-on: [ self-hosted, label-go ]
