@@ -1,7 +1,7 @@
 name: release-auto
 
 on:
-  push:
+  merge:
     branches: ["release"]
 
 jobs:
