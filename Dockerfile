@@ -1,4 +1,4 @@
 FROM alpine:latest
 
-COPY ./main .
+COPY main .
 ENTRYPOINT ["nohup", "./main", "&"]
