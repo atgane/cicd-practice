@@ -48,4 +48,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: user/app:latest
+        tags: hyper2012/app:latest
