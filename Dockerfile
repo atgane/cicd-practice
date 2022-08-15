@@ -1,4 +1,4 @@
 FROM alpine:latest
 
-COPY /home/runner/work/cicd-practice/cicd-practice/main .
+COPY ./main .
 ENTRYPOINT ["nohup", "./main", "&"]
