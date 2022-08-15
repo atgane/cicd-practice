@@ -16,10 +16,32 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: merge
+    - name: Merge
       uses: mtanzi/action-automerge@v1
       id: merge
       with:
         github_token: ${{ github.token }}
         source: 'dev'
         target: 'release'
+
+    - name: Checkout release
+      uses: actions/checkout@v3
+      with:
+        ref: release
+
+    - name: Go build
+      run: go build main.go
+
+  login:
+    steps:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build & Push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: user/app:latest
