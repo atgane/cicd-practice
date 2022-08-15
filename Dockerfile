@@ -1,7 +1,4 @@
-FROM golang:alpine3.16
-RUN mkdir /app
-ADD . /app
-WORKDIR /app
-RUN go clean --modcache
-RUN go build -o main .
-CMD ["/app/main"]
+FROM alpine:latest
+
+COPY ./main .
+ENTRYPOINT ["nohup", "./main", "&"]
