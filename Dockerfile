@@ -5,18 +5,17 @@ ENV GO111MODULE=on \
     GOOS=linux \
     GOARCH=amd64
 
-WORKDIR /app
+WORKDIR /build
 
 COPY go.mod go.sum *.go ./
 
 RUN go mod download
 
-
 RUN go build -o main .
 
 WORKDIR /dist
 
-RUN cp /app/main .
+RUN cp /build/main .
 
 FROM scratch
 
