@@ -7,10 +7,19 @@ ENV GO111MODULE=on \
 
 WORKDIR /app
 
-COPY *.go go.mod go.sum ./
+COPY go.mod go.sum *.go ./
 
 RUN go mod download
 
-RUN go build ./main.go
 
-ENTRYPOINT ["./main"]
+RUN go build -o main .
+
+WORKDIR /dist
+
+RUN cp /app/main .
+
+FROM scratch
+
+COPY --from=builder /dist/main .
+
+ENTRYPOINT ["/main"]
