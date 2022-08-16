@@ -1,5 +1,4 @@
-FROM golang:alpine3.16
+FROM alpine:latest
 
-COPY . .
-RUN go build main.go
-ENTRYPOINT ["nohup", "./main", "&"]
+COPY ./main .
+ENTRYPOINT ["./main"]
