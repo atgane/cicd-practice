@@ -1,15 +1,16 @@
-FROM golang:1.18.5-alpine3.16
+FROM golang:alpine AS builder
+
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
-
 COPY *.go ./
 
-RUN go build .
+RUN go mod download
 
-EXPOSE 8080
+RUN go build main.go
 
-CMD [ "/main" ]
+ENTRYPOINT ["./main"]
