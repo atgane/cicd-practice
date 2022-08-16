@@ -11,6 +11,6 @@ COPY *.go go.mod go.sum ./
 
 RUN go mod download
 
-RUN go build main.go
+RUN go build ./main.go
 
 ENTRYPOINT ["./main"]
