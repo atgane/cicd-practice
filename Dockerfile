@@ -1,24 +1,17 @@
-FROM golang:alpine AS builder
+# syntax=docker/dockerfile:1
 
-ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
+FROM golang:1.16-alpine
 
-WORKDIR /build
+WORKDIR /app
 
-COPY . ./
-
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
-RUN go build -o main .
+COPY *.go ./
 
-WORKDIR /dist
+RUN go build -o /docker-gs-ping
 
-RUN cp /build/main .
+EXPOSE 8080
 
-FROM scratch
-
-COPY --from=builder /dist/main .
-
-ENTRYPOINT ["/main"]
+CMD [ "/docker-gs-ping" ]
