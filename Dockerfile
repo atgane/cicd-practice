@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM golang:alpine3.16
 
-COPY ./main .
+COPY . .
 ENTRYPOINT ["./main"]
