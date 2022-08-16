@@ -21,4 +21,4 @@ FROM scratch
 
 COPY --from=builder /dist/main .
 
-ENTRYPOINT ["/main"]
+ENTRYPOINT ["./main"]
